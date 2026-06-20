@@ -1,0 +1,52 @@
+export const metadata = {
+  title: "Primeiros passos com ROS 2",
+  description:
+    "Um guia introdutório ao ROS 2 (Robot Operating System) para quem está começando na robótica de software.",
+  date: "2026-06-12",
+  author: "Equipe ERUS",
+  tags: ["tutorial", "ros2", "software"],
+};
+
+# Primeiros passos com ROS 2
+
+O **ROS 2** (Robot Operating System 2) é o middleware que usamos para conectar
+sensores, atuadores e algoritmos nos nossos robôs. Apesar do nome, ele não é um
+sistema operacional — é um conjunto de bibliotecas e ferramentas para construir
+aplicações robóticas distribuídas.
+
+## Conceitos centrais
+
+| Conceito  | O que é                                                    |
+| --------- | ---------------------------------------------------------- |
+| Nó (node) | Um processo que executa uma tarefa específica              |
+| Tópico    | Canal de comunicação assíncrona entre nós                  |
+| Mensagem  | A estrutura de dados que trafega por um tópico             |
+| Serviço   | Comunicação síncrona do tipo requisição/resposta           |
+
+## Um nó mínimo em Python
+
+```python
+import rclpy
+from rclpy.node import Node
+
+class OlaMundo(Node):
+    def __init__(self):
+        super().__init__("ola_mundo")
+        self.get_logger().info("Nó iniciado!")
+
+def main():
+    rclpy.init()
+    rclpy.spin(OlaMundo())
+    rclpy.shutdown()
+```
+
+Esse nó simplesmente sobe, registra uma mensagem no log e fica vivo até receber
+um sinal de encerramento. A partir daí, é só adicionar _publishers_ e
+_subscribers_ para começar a trocar dados.
+
+## Próximos passos
+
+No próximo tutorial vamos colocar dois nós para conversar por um tópico — o
+clássico par publisher/subscriber. Se quiser se aprofundar antes, a
+[documentação oficial do ROS 2](https://docs.ros.org/) é o melhor ponto de
+partida.
