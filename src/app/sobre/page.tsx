@@ -154,11 +154,17 @@ export default function SobrePage() {
               </div>
             </div>
 
-            <div className="mt-6 flex h-64 items-center justify-center rounded-lg border-2 border-dashed border-border bg-muted/30">
-              <div className="text-center text-sm text-muted-foreground">
-                <MapPin className="mx-auto mb-2 size-8 opacity-40" />
-                <p>Mapa em breve</p>
-              </div>
+            <div className="mt-6 h-64 overflow-hidden rounded-lg border border-border">
+              <iframe
+                title="Localização da ERUS - UFES, Centro Tecnológico"
+                src="https://www.google.com/maps?q=Universidade+Federal+do+Esp%C3%ADrito+Santo+Centro+Tecnol%C3%B3gico+Av.+Fernando+Ferrari+514+Goiabeiras+Vit%C3%B3ria+ES&output=embed"
+                width="100%"
+                height="100%"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="border-0"
+                allowFullScreen
+              />
             </div>
           </div>
         </section>
