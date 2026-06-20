@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { Corners } from "@/components/ui/corners";
 import { getProjectIcon } from "@/lib/project-icons";
+import { ProjectImage } from "@/components/projects/ProjectImage";
 import type { ProjectType } from "@/data/projects";
 
 const typeLabels: Record<ProjectType, string> = {
@@ -20,6 +21,7 @@ interface ProjectCardProps {
   description: string;
   tags: string[];
   type: ProjectType;
+  photo?: string;
   index?: number;
 }
 
@@ -29,6 +31,7 @@ export function ProjectCard({
   description,
   tags,
   type,
+  photo,
   index = 0,
 }: ProjectCardProps) {
   const Icon = getProjectIcon(slug);
@@ -46,6 +49,13 @@ export function ProjectCard({
         className="group relative flex h-full flex-col border border-border bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-erus/40 hover:shadow-[0_12px_40px_-12px_rgba(22,69,122,0.25)]"
       >
         <Corners className="border-erus opacity-0 group-hover:opacity-100" />
+
+        <ProjectImage
+          slug={slug}
+          photo={photo}
+          alt={`Foto do projeto ${name}`}
+          className="-mx-6 -mt-6 mb-5 h-40 w-[calc(100%+3rem)] border-b border-border"
+        />
 
         <div className="flex items-start justify-between">
           <div className="flex size-11 items-center justify-center border border-erus/15 bg-erus/[0.06] transition-colors duration-300 group-hover:border-erus/30 group-hover:bg-erus/10">

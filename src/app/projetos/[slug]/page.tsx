@@ -5,6 +5,7 @@ import { ArrowLeft } from "lucide-react";
 import { projects } from "@/data/projects";
 import { getProjectIcon } from "@/lib/project-icons";
 import { TechBadge } from "@/components/projects/TechBadge";
+import { ProjectImage } from "@/components/projects/ProjectImage";
 
 const typeLabels: Record<string, string> = {
   competitivo: "Competitivo",
@@ -72,6 +73,13 @@ export default async function ProjetoPage({ params }: PageProps) {
           </div>
         </div>
       </div>
+
+      <ProjectImage
+        slug={project.slug}
+        photo={project.photo}
+        alt={`Foto do projeto ${project.name}`}
+        className="mt-8 h-72 w-full border border-border"
+      />
 
       <p className="mt-8 text-lg leading-relaxed text-muted-foreground">
         {project.longDescription}

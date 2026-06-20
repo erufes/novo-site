@@ -26,15 +26,16 @@ export default function MembrosPage() {
         <FadeIn>
           <section className="mb-16">
             <h2 className="mb-6 text-2xl font-bold text-foreground">
-              Professores Coordenadores
+              Professores Responsáveis
             </h2>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {professors.map((member, index) => (
                 <MemberCard
-                  key={member.githubUsername}
+                  key={member.name}
                   name={member.name}
                   course={member.course}
                   yearJoined={member.yearJoined}
+                  photo={member.photo}
                   githubUsername={member.githubUsername}
                   isProfessor={member.isProfessor}
                   index={index}
@@ -53,10 +54,11 @@ export default function MembrosPage() {
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {regularMembers.map((member, index) => (
               <MemberCard
-                key={member.githubUsername}
+                key={member.name}
                 name={member.name}
                 course={member.course}
                 yearJoined={member.yearJoined}
+                photo={member.photo}
                 githubUsername={member.githubUsername}
                 isProfessor={member.isProfessor}
                 index={index}

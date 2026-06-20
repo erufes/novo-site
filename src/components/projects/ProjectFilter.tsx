@@ -58,6 +58,7 @@ export function ProjectFilter({ projects }: ProjectFilterProps) {
               description={project.description}
               tags={project.tags}
               type={project.type}
+              photo={project.photo}
               index={i}
             />
           ))}

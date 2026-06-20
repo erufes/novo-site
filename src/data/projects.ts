@@ -8,7 +8,8 @@ export type Project = {
   emoji: string;
   tags: string[];
   type: ProjectType;
-  imageUrl: string;
+  /** Foto única do projeto: `/projetos/<slug>.png` em /public. */
+  photo: string;
 };
 
 export const projects: Project[] = [
@@ -22,7 +23,7 @@ export const projects: Project[] = [
     emoji: '🏎️',
     tags: ['PID', 'sensores IR', 'Arduino', 'velocidade', 'controle'],
     type: 'competitivo',
-    imageUrl: '/images/projects/seguidor.jpg',
+    photo: '/projetos/seguidor-de-linhas.png',
   },
   {
     name: 'VSSS',
@@ -40,7 +41,7 @@ export const projects: Project[] = [
       'ROS',
     ],
     type: 'pesquisa',
-    imageUrl: '/images/projects/vsss.jpg',
+    photo: '/projetos/vsss.png',
   },
   {
     name: 'Simulação 2D',
@@ -58,7 +59,7 @@ export const projects: Project[] = [
       'estratégia',
     ],
     type: 'competitivo',
-    imageUrl: '/images/projects/sim2d.jpg',
+    photo: '/projetos/simulacao-2d.png',
   },
   {
     name: 'Sumô',
@@ -76,7 +77,7 @@ export const projects: Project[] = [
       'CAD',
     ],
     type: 'competitivo',
-    imageUrl: '/images/projects/sumo.jpg',
+    photo: '/projetos/sumo.png',
   },
   {
     name: 'OPEN',
@@ -88,7 +89,7 @@ export const projects: Project[] = [
     emoji: '💡',
     tags: ['inovação', 'prototipagem', 'criatividade', 'IoT', 'impressão 3D'],
     type: 'competitivo',
-    imageUrl: '/images/projects/open.jpg',
+    photo: '/projetos/open.png',
   },
   {
     name: 'Duckietown',
@@ -106,7 +107,7 @@ export const projects: Project[] = [
       'visão computacional',
     ],
     type: 'pesquisa',
-    imageUrl: '/images/projects/duckietown.jpg',
+    photo: '/projetos/duckietown.png',
   },
   {
     name: 'PDR',
@@ -124,6 +125,6 @@ export const projects: Project[] = [
       'robótica assistiva',
     ],
     type: 'pesquisa',
-    imageUrl: '/images/projects/pdr.jpg',
+    photo: '/projetos/pdr.png',
   },
 ];
