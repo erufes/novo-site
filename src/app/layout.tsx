@@ -1,12 +1,10 @@
 import type { Metadata } from "next"
 import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google"
-import { headers } from "next/headers"
 import "./globals.css"
 
-import { ThemeProvider } from "@/components/theme-provider"
 import { Navbar } from "@/components/layout/Navbar"
 import { Footer } from "@/components/layout/Footer"
-import { Toaster } from "@/components/ui/sonner"
+import { SiteChrome } from "@/components/layout/SiteChrome"
 
 const inter = Inter({
   variable: "--font-sans",
@@ -112,15 +110,11 @@ const organizationJsonLd = {
   ],
 }
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const headersList = await headers()
-  const pathname = headersList.get("x-next-pathname") ?? ""
-  const isAdmin = pathname.startsWith("/admin")
-
   return (
     <html
       lang="pt-BR"
@@ -134,12 +128,9 @@ export default async function RootLayout({
             __html: JSON.stringify(organizationJsonLd),
           }}
         />
-        <ThemeProvider forcedTheme={isAdmin ? undefined : "light"}>
-          {!isAdmin && <Navbar />}
-          <main className="flex-1">{children}</main>
-          {!isAdmin && <Footer />}
-          <Toaster />
-        </ThemeProvider>
+        <SiteChrome navbar={<Navbar />} footer={<Footer />}>
+          {children}
+        </SiteChrome>
       </body>
     </html>
   )
