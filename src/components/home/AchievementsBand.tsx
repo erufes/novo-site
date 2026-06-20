@@ -4,6 +4,7 @@ import Link from "next/link"
 import { motion } from "framer-motion"
 import { ArrowRight, Trophy } from "lucide-react"
 import { achievements } from "@/data/achievements"
+import { Marquee } from "@/components/ui/marquee"
 
 const ease = [0.22, 1, 0.36, 1] as const
 
@@ -111,23 +112,7 @@ export default function AchievementsBand() {
 
       {/* Competition marquee */}
       <div className="relative border-t border-white/10 py-5">
-        <div className="marquee-mask overflow-hidden">
-          <div className="animate-marquee flex w-max">
-            {[0, 1].map((copy) => (
-              <div key={copy} aria-hidden={copy === 1} className="flex">
-                {competitions.map((name) => (
-                  <span
-                    key={`${copy}-${name}`}
-                    className="mx-8 flex items-center gap-8 font-mono text-xs uppercase tracking-[0.3em] text-white/30"
-                  >
-                    {name}
-                    <span className="text-es-blue/40">/</span>
-                  </span>
-                ))}
-              </div>
-            ))}
-          </div>
-        </div>
+        <Marquee items={competitions} />
       </div>
     </section>
   )
