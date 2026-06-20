@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { isRateLimited, getClientIp } from '@/lib/rate-limit'
-import { contactSchema, parseBody } from '@/lib/validation'
+import { partnerInquirySchema, parseBody } from '@/lib/validation'
 import { deliverSubmission } from '@/lib/notifications'
 
 const MAX_REQUESTS = 5
@@ -9,39 +9,42 @@ const WINDOW_MS = 60 * 1000
 export async function POST(request: NextRequest) {
   try {
     const ip = getClientIp(request)
-    if (isRateLimited(`contact:${ip}`, MAX_REQUESTS, WINDOW_MS)) {
+    if (isRateLimited(`seja-parceiro:${ip}`, MAX_REQUESTS, WINDOW_MS)) {
       return NextResponse.json(
         { error: 'Muitas requisições. Tente novamente em alguns minutos.' },
         { status: 429 }
       )
     }
 
-    const parsed = await parseBody(request, contactSchema)
+    const parsed = await parseBody(request, partnerInquirySchema)
     if (parsed.error) return parsed.error
     const d = parsed.data
 
     const ok = await deliverSubmission({
-      kind: 'Contato',
-      subject: d.subject,
+      kind: 'Proposta de parceria',
+      subject: `Parceria: ${d.organization}`,
       replyTo: d.email,
       fields: [
-        { label: 'Nome', value: d.name },
+        { label: 'Organização', value: d.organization },
+        { label: 'Contato', value: d.contactName },
         { label: 'Email', value: d.email },
-        { label: 'Assunto', value: d.subject },
-        { label: 'Mensagem', value: d.message },
+        ...(d.phone ? [{ label: 'Telefone', value: d.phone }] : []),
+        ...(d.website ? [{ label: 'Site', value: d.website }] : []),
+        { label: 'Tipo de parceria', value: d.partnershipType },
+        { label: 'Proposta', value: d.message },
       ],
     })
 
     if (!ok) {
       return NextResponse.json(
-        { error: 'Não foi possível enviar a mensagem. Tente novamente.' },
+        { error: 'Não foi possível enviar a proposta. Tente novamente.' },
         { status: 502 }
       )
     }
 
     return NextResponse.json({
       success: true,
-      message: 'Mensagem enviada com sucesso!',
+      message: 'Proposta enviada com sucesso!',
     })
   } catch {
     return NextResponse.json({ error: 'Erro interno do servidor' }, { status: 500 })

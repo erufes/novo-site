@@ -5,14 +5,13 @@ import {
   Users,
   Briefcase,
   Wrench,
-  Clock,
-  ExternalLink,
+  Info,
 } from "lucide-react"
 
-import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { PageHeader } from "@/components/ui/page-header"
 import { FadeIn } from "@/components/ui/fade-in"
+import { MembershipForm } from "@/components/membership/MembershipForm"
 
 export const metadata: Metadata = {
   title: "Seja Membro",
@@ -51,13 +50,6 @@ const benefits = [
     description:
       "Utilize impressoras 3D, ferramentas de eletrônica, componentes e softwares profissionais.",
   },
-]
-
-const socialChannels = [
-  { label: "Instagram", href: "https://instagram.com/erus.ufes" },
-  { label: "Facebook", href: "https://facebook.com/erusbot" },
-  { label: "LinkedIn", href: "https://linkedin.com/company/erus-ufes" },
-  { label: "YouTube", href: "https://youtube.com/@erusteam" },
 ]
 
 export default function SejaMembro() {
@@ -117,40 +109,32 @@ export default function SejaMembro() {
 
       <FadeIn>
         <section className="mt-20">
-          <Card className="mx-auto max-w-2xl border-dashed border-border/50">
-            <CardContent className="flex flex-col items-center gap-4 pt-6 text-center">
-              <div className="flex size-12 items-center justify-center rounded-full bg-muted">
-                <Clock className="size-6 text-muted-foreground" />
-              </div>
-              <h3 className="text-lg font-semibold text-foreground">
-                O processo seletivo não está aberto no momento
-              </h3>
-              <p className="max-w-md text-sm text-muted-foreground">
-                Siga nossas redes sociais para ser notificado quando abrirmos novas
-                vagas. Fique de olho!
+          <div className="mx-auto max-w-2xl">
+            <h2 className="text-center text-2xl font-semibold text-foreground">
+              Faça seu pré-cadastro
+            </h2>
+
+            <div className="mt-6 flex items-start gap-3 border border-erus/20 bg-erus/[0.05] p-4">
+              <Info className="mt-0.5 size-5 shrink-0 text-erus" />
+              <p className="text-sm leading-relaxed text-muted-foreground">
+                <strong className="font-semibold text-foreground">
+                  Isto é um pré-cadastro, não uma inscrição no processo seletivo.
+                </strong>{" "}
+                O processo seletivo não está aberto no momento. Ao deixar seus
+                dados aqui, você entra na nossa lista de interesse e{" "}
+                <strong className="font-medium text-foreground">
+                  avisaremos você assim que as próximas vagas abrirem
+                </strong>{" "}
+                — a inscrição oficial acontece depois, durante o processo seletivo.
               </p>
-              <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
-                {socialChannels.map((social) => (
-                  <Button
-                    key={social.label}
-                    variant="outline"
-                    size="sm"
-                    nativeButton={false}
-                    render={
-                      <a
-                        href={social.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      />
-                    }
-                  >
-                    <ExternalLink className="mr-2 size-3.5" />
-                    {social.label}
-                  </Button>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
+            </div>
+
+            <Card className="mt-6 border-border/50 bg-card/50">
+              <CardContent className="pt-6">
+                <MembershipForm />
+              </CardContent>
+            </Card>
+          </div>
         </section>
       </FadeIn>
     </div>

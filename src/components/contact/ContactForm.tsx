@@ -33,14 +33,32 @@ export function ContactForm() {
   })
 
   async function onSubmit(data: ContactFormData) {
-    // Simulate sending
-    await new Promise((resolve) => setTimeout(resolve, 1000))
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: data.nome,
+          email: data.email,
+          subject: data.assunto,
+          message: data.mensagem,
+        }),
+      })
 
-    toast.success("Mensagem enviada com sucesso!", {
-      description: `Obrigado pelo contato, ${data.nome}. Responderemos em breve.`,
-    })
+      if (!res.ok) {
+        const body = await res.json().catch(() => null)
+        toast.error(body?.error ?? "Erro ao enviar mensagem. Tente novamente.")
+        return
+      }
 
-    reset()
+      toast.success("Mensagem enviada com sucesso!", {
+        description: `Obrigado pelo contato, ${data.nome}. Responderemos em breve.`,
+      })
+
+      reset()
+    } catch {
+      toast.error("Erro ao enviar mensagem. Verifique sua conexão.")
+    }
   }
 
   return (

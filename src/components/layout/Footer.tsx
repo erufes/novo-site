@@ -44,7 +44,7 @@ const navigationLinks = [
 
 const participateLinks = [
   { label: "Seja membro", href: "/seja-membro" },
-  { label: "Seja parceiro", href: "/contato" },
+  { label: "Seja parceiro", href: "/seja-parceiro" },
   { label: "Contato", href: "/contato" },
 ]
 
