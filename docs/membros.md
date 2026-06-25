@@ -34,9 +34,9 @@ Cada pessoa é um objeto com o formato do tipo `Member`:
 | `githubUsername`   | opcional  | Usuário do GitHub. Quando presente, ativa o botão do GitHub no card. |
 | `linkedinUsername` | opcional  | Identificador do LinkedIn — o trecho depois de `/in/` na URL do perfil (ex.: `linkedin.com/in/fulano-silva` → `'fulano-silva'`). Quando presente, ativa o botão do LinkedIn no card. |
 
-> Sem `photo`, o card usa o avatar do GitHub (se houver `githubUsername`) e, na
-> falta dele, um ícone de pessoa. Sem `course`/`githubUsername`/`linkedinUsername`,
-> os respectivos elementos simplesmente não aparecem. Nada quebra.
+> Sem `photo` (ou se o arquivo não existir), o card mostra um ícone de pessoa
+> padrão. Sem `course`/`githubUsername`/`linkedinUsername`, os respectivos
+> elementos simplesmente não aparecem. Nada quebra.
 
 ### Cursos válidos (`course`)
 
@@ -144,8 +144,8 @@ pessoa nunca deveria ter sido listada.
 - **Vírgula faltando** entre os objetos do array.
 - **Aspas trocadas:** use aspas simples `'...'`.
 - **Foto não aparece:** confira o nome do arquivo em `public/membros/` (incluindo
-  a **extensão**) e o campo `photo`. Sem foto válida, o card usa o avatar do
-  GitHub ou um ícone de pessoa (comportamento esperado).
+  a **extensão**) e o campo `photo`. Sem foto válida, o card mostra um ícone de
+  pessoa padrão (comportamento esperado).
 
 Rode `npx tsc --noEmit` antes do PR — ele aponta esses erros. Depois siga o
 fluxo de commit/PR do [README](./README.md).

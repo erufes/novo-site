@@ -29,8 +29,8 @@ projetos serve de modelo para eles.
 
 Detalhes e a lista de nomes esperados estão nos READMEs de cada pasta
 ([membros](../public/membros/README.md), [projetos](../public/projetos/README.md))
-e nos tutoriais. Foto de membro ausente cai para o avatar do GitHub ou um ícone
-de pessoa; foto de projeto ausente cai para um ícone — nada quebra.
+e nos tutoriais. Foto de membro ausente cai para um ícone de pessoa; foto de
+projeto ausente cai para um ícone — nada quebra.
 
 ## Fluxo de trabalho (vale para tudo)
 

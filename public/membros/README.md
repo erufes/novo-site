@@ -10,8 +10,8 @@ Coloque aqui a foto de cada membro/professor.
 - Recomendado: imagem **quadrada** (ex.: 400×400) — ela é exibida quadrada no
   card; imagens não quadradas são recortadas pelo centro.
 
-> Enquanto a foto não existir, o card usa o avatar do GitHub (se o membro tiver
-> `githubUsername`) e, na falta dele, um ícone de pessoa. Nada quebra.
+> Enquanto a foto não existir, o card mostra um ícone de pessoa padrão. Nada
+> quebra.
 
 ## Nomes esperados para o elenco atual
 
