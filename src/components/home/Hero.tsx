@@ -95,7 +95,6 @@ const slides: Slide[] = [
     description:
       "Somos a ERUS, equipe de robótica da Universidade Federal do Espírito Santo. Representamos o ES nas maiores competições de robótica da América Latina.",
     cta: { label: "Conheça os projetos", href: "/projetos" },
-    ctaSecondary: { label: "Seja um patrocinador", href: "/contato" },
     visual: <LogoVisual />,
   },
   {

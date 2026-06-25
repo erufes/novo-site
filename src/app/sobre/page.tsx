@@ -156,8 +156,8 @@ export default function SobrePage() {
 
             <div className="mt-6 h-64 overflow-hidden rounded-lg border border-border">
               <iframe
-                title="Localização da ERUS - UFES, Centro Tecnológico"
-                src="https://www.google.com/maps?q=Universidade+Federal+do+Esp%C3%ADrito+Santo+Centro+Tecnol%C3%B3gico+Av.+Fernando+Ferrari+514+Goiabeiras+Vit%C3%B3ria+ES&output=embed"
+                title="Localização da ERUS - CT-XIII, Programa de Pós-Graduação em Informática (UFES)"
+                src="https://www.google.com/maps?q=CT-XIII+Programa+de+P%C3%B3s-Gradua%C3%A7%C3%A3o+em+Inform%C3%A1tica+UFES+Vit%C3%B3ria+ES&output=embed"
                 width="100%"
                 height="100%"
                 loading="lazy"

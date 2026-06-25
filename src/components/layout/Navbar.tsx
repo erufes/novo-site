@@ -92,10 +92,10 @@ export function Navbar() {
         {/* Right side */}
         <div className="flex items-center gap-3">
           <Link
-            href="/seja-membro"
+            href="/seja-parceiro"
             className="group hidden items-center gap-2 rounded-sm bg-erus px-5 py-2.5 text-[13px] font-semibold text-white transition-colors duration-300 hover:bg-erus-light lg:inline-flex"
           >
-            Seja membro
+            Seja parceiro
             <ArrowRight className="size-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
           </Link>
 
@@ -151,11 +151,11 @@ export function Navbar() {
                 })}
 
                 <Link
-                  href="/seja-membro"
+                  href="/seja-parceiro"
                   onClick={() => setMobileOpen(false)}
                   className="mt-3 inline-flex items-center justify-center gap-2 rounded-sm bg-erus px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-erus-light"
                 >
-                  Seja membro
+                  Seja parceiro
                   <ArrowRight className="size-4" />
                 </Link>
               </nav>
