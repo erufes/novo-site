@@ -109,7 +109,7 @@ export function PartnerForm() {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="phone">Celular</Label>
+          <Label htmlFor="phone">Telefone</Label>
           <Input
             id="phone"
             type="tel"

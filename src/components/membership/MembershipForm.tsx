@@ -102,7 +102,7 @@ export function MembershipForm() {
         </div>
 
         <div className="space-y-2 sm:col-span-2">
-          <Label htmlFor="phone">Celular / WhatsApp</Label>
+          <Label htmlFor="phone">Telefone / WhatsApp</Label>
           <Input
             id="phone"
             type="tel"
