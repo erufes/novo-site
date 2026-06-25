@@ -23,14 +23,14 @@ projetos serve de modelo para eles.
 
 | Tipo                | Pasta             | Nome do arquivo        | Formato |
 | ------------------- | ----------------- | ---------------------- | ------- |
-| Foto de membro      | `public/membros/` | `nome_sobrenome.png`   | PNG     |
+| Foto de membro      | `public/membros/` | `nome_sobrenome.ext`   | PNG/JPG/JPEG |
 | Foto de projeto     | `public/projetos/`| `<slug>.png`           | PNG     |
 | Capa de post (blog) | `public/blog/`    | livre (ex.: `cbr.jpg`) | livre — **opcional** |
 
 Detalhes e a lista de nomes esperados estão nos READMEs de cada pasta
 ([membros](../public/membros/README.md), [projetos](../public/projetos/README.md))
-e nos tutoriais. Foto de membro/projeto ausente cai para um fallback (iniciais /
-ícone) — nada quebra.
+e nos tutoriais. Foto de membro ausente cai para o avatar do GitHub ou um ícone
+de pessoa; foto de projeto ausente cai para um ícone — nada quebra.
 
 ## Fluxo de trabalho (vale para tudo)
 

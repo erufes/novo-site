@@ -37,6 +37,7 @@ export default function MembrosPage() {
                   yearJoined={member.yearJoined}
                   photo={member.photo}
                   githubUsername={member.githubUsername}
+                  linkedinUsername={member.linkedinUsername}
                   isProfessor={member.isProfessor}
                   index={index}
                 />
@@ -60,6 +61,7 @@ export default function MembrosPage() {
                 yearJoined={member.yearJoined}
                 photo={member.photo}
                 githubUsername={member.githubUsername}
+                linkedinUsername={member.linkedinUsername}
                 isProfessor={member.isProfessor}
                 index={index}
               />

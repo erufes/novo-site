@@ -1,6 +1,7 @@
 "use client";
 
-import { ExternalLink } from "lucide-react";
+import { GithubIcon, LinkedinIcon } from "@/components/ui/social-icons";
+import { MemberPhoto } from "@/components/members/MemberPhoto";
 import {
   Accordion,
   AccordionItem,
@@ -40,33 +41,65 @@ export function AlumniList({ members }: AlumniListProps) {
             </span>
           </AccordionTrigger>
           <AccordionContent className="px-2">
-            <ul className="space-y-2">
-              {grouped[year].map((member) => (
-                <li
-                  key={member.name}
-                  className="flex items-center justify-between gap-2 rounded-md px-3 py-2 transition-colors hover:bg-muted/50"
-                >
-                  <span className="flex items-center gap-3 text-sm">
-                    <span>{member.name}</span>
-                    {member.course && (
-                      <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-muted-foreground">
-                        {courseLabels[member.course as Course]}
-                      </span>
-                    )}
-                  </span>
-                  {member.githubUsername && (
-                    <a
-                      href={`https://github.com/${member.githubUsername}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-xs text-muted-foreground transition-colors hover:text-foreground"
-                    >
-                      <ExternalLink className="size-3.5" />
-                      <span className="sr-only">GitHub de {member.name}</span>
-                    </a>
-                  )}
-                </li>
-              ))}
+            <ul className="divide-y divide-border">
+              {grouped[year].map((member) => {
+                return (
+                  <li
+                    key={member.name}
+                    className="flex items-center gap-3 px-1 py-2.5"
+                  >
+                    {/* Foto */}
+                    <div className="relative size-11 shrink-0 overflow-hidden border border-border bg-erus/[0.04]">
+                      <MemberPhoto
+                        name={member.name}
+                        photo={member.photo}
+                        className="size-full object-cover"
+                        fallbackClassName="flex size-full items-center justify-center"
+                      />
+                    </div>
+
+                    {/* Nome + curso */}
+                    <div className="min-w-0 flex-1">
+                      <p className="truncate text-sm font-medium text-foreground">
+                        {member.name}
+                      </p>
+                      {member.course && (
+                        <p className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.12em] text-muted-foreground">
+                          {courseLabels[member.course as Course]}
+                        </p>
+                      )}
+                    </div>
+
+                    {/* Links */}
+                    <div className="flex shrink-0 items-center gap-1.5">
+                      {member.githubUsername && (
+                        <a
+                          href={`https://github.com/${member.githubUsername}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`GitHub de ${member.name}`}
+                          title="GitHub"
+                          className="inline-flex size-8 items-center justify-center border border-border text-muted-foreground transition-colors hover:border-erus/40 hover:bg-erus/[0.06] hover:text-erus"
+                        >
+                          <GithubIcon className="size-4" />
+                        </a>
+                      )}
+                      {member.linkedinUsername && (
+                        <a
+                          href={`https://www.linkedin.com/in/${member.linkedinUsername}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`LinkedIn de ${member.name}`}
+                          title="LinkedIn"
+                          className="inline-flex size-8 items-center justify-center border border-border text-muted-foreground transition-colors hover:border-[#0a66c2]/50 hover:bg-[#0a66c2]/[0.08] hover:text-[#0a66c2]"
+                        >
+                          <LinkedinIcon className="size-4" />
+                        </a>
+                      )}
+                    </div>
+                  </li>
+                );
+              })}
             </ul>
           </AccordionContent>
         </AccordionItem>

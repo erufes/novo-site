@@ -16,12 +16,18 @@ export type Member = {
   yearJoined?: number;
   yearLeft: number | null;
   /**
-   * Caminho da foto em /public, no padrão `/membros/nome_sobrenome.png`.
-   * Se ausente (ou se o arquivo ainda não existe), o card mostra as iniciais.
+   * Caminho da foto em /public, ex.: `/membros/nome_sobrenome.jpg`.
+   * Se ausente (ou se o arquivo não existir), o card mostra o ícone de pessoa padrão.
    */
   photo?: string;
   /** Usuário do GitHub. Opcional: ativa o botão de link no card quando presente. */
   githubUsername?: string;
+  /**
+   * Identificador do LinkedIn — o trecho depois de `/in/` na URL do perfil
+   * (ex.: para `linkedin.com/in/fulano-silva`, use `'fulano-silva'`).
+   * Opcional: ativa o botão do LinkedIn no card quando presente.
+   */
+  linkedinUsername?: string;
   isProfessor: boolean;
 };
 
@@ -52,7 +58,7 @@ export const activeMembers: Member[] = [
   {
     name: 'Bruno Légora',
     yearLeft: null,
-    photo: '/membros/bruno_legora.png',
+    photo: '/membros/bruno_legora.jpeg',
     githubUsername: 'blegora',
     isProfessor: true,
   },
@@ -69,7 +75,7 @@ export const activeMembers: Member[] = [
     name: 'Artur Oliveira Cunha',
     course: 'ccomp',
     yearLeft: null,
-    photo: '/membros/artur_cunha.png',
+    photo: '/membros/arthur_cunha.jpeg',
     githubUsername: 'arturocunha',
     isProfessor: false,
   },
@@ -77,15 +83,16 @@ export const activeMembers: Member[] = [
     name: 'Daniel Cid Constantinidis',
     course: 'engcomp',
     yearLeft: null,
-    photo: '/membros/daniel_constantinidis.png',
+    photo: '/membros/daniel_constantinidis.jpg',
     githubUsername: 'danielcidc',
+    linkedinUsername: 'daniel-cid-constantinidis-a209ba244',
     isProfessor: false,
   },
   {
     name: 'Felipe Bruno Raposo Soares',
     course: 'engcomp',
     yearLeft: null,
-    photo: '/membros/felipe_soares.png',
+    photo: '/membros/felipe_soares.jpeg',
     githubUsername: 'felipebsoaress',
     isProfessor: false,
   },
@@ -93,7 +100,7 @@ export const activeMembers: Member[] = [
     name: 'Gabriel Lyra Campos',
     course: 'eletrica',
     yearLeft: null,
-    photo: '/membros/gabriel_campos.png',
+    photo: '/membros/gabriel_campos.jpeg',
     githubUsername: 'Gabriel-l-c',
     isProfessor: false,
   },
@@ -101,15 +108,16 @@ export const activeMembers: Member[] = [
     name: 'Guilherme Louzada Figueiredo',
     course: 'engcomp',
     yearLeft: null,
-    photo: '/membros/guilherme_figueiredo.png',
+    photo: '/membros/guilherme_figueiredo.jpeg',
     githubUsername: 'Louzadino',
+    linkedinUsername: 'guilherme-louzada-222922311',
     isProfessor: false,
   },
   {
     name: 'Heron Garcia Lodi E Silva',
     course: 'engcomp',
     yearLeft: null,
-    photo: '/membros/heron_silva.png',
+    photo: '/membros/heron_silva.jpeg',
     githubUsername: 'Heron42',
     isProfessor: false,
   },
@@ -117,7 +125,7 @@ export const activeMembers: Member[] = [
     name: 'Leo Santos Carvalho Comério',
     course: 'engcomp',
     yearLeft: null,
-    photo: '/membros/leo_comerio.png',
+    photo: '/membros/leo_comerio.jpeg',
     githubUsername: 'kkkk-am',
     isProfessor: false,
   },
@@ -125,7 +133,7 @@ export const activeMembers: Member[] = [
     name: 'Rafael Vieira de Almeida',
     course: 'ccomp',
     yearLeft: null,
-    photo: '/membros/rafael_almeida.png',
+    photo: '/membros/rafael_almeida.jpeg',
     githubUsername: 'rvieira1001',
     isProfessor: false,
   },
@@ -133,7 +141,7 @@ export const activeMembers: Member[] = [
     name: 'Vitor Rodrigues Tomé',
     course: 'engcomp',
     yearLeft: null,
-    photo: '/membros/vitor_tome.png',
+    photo: '/membros/vitor_tome.jpeg',
     githubUsername: 'vrtome',
     isProfessor: false,
   },
@@ -143,13 +151,14 @@ export const activeMembers: Member[] = [
     yearLeft: null,
     photo: '/membros/pietro_oliveira.jpg',
     githubUsername: 'PietroPaziniPassos',
+    linkedinUsername: 'pietro-pazini',
     isProfessor: false,
   },
   {
     name: 'Luiz Marcos Iglesias Carraretto',
     course: 'engcomp',
     yearLeft: null,
-    photo: '/membros/luiz_carraretto.png',
+    photo: '/membros/luiz_carraretto.jpeg',
     githubUsername: 'LuizMarcosCarraretto',
     isProfessor: false,
   },
@@ -157,28 +166,29 @@ export const activeMembers: Member[] = [
     name: 'Paulo Ricardo Pascoal',
     course: 'mecanica',
     yearLeft: null,
-    photo: '/membros/paulo_pascoal.png',
+    photo: '/membros/paulo_pascoal.jpeg',
+    linkedinUsername: 'paulo-ricardo-pascoal-830986259',
     isProfessor: false,
   },
   {
     name: 'Lucas Zucarato Gama Soares',
     course: 'eletrica',
     yearLeft: null,
-    photo: '/membros/lucas_soares.png',
+    photo: '/membros/lucas_soares.jpeg',
     isProfessor: false,
   },
   {
     name: 'Pedro Pavesi de Oliveira',
     course: 'engcomp',
     yearLeft: null,
-    photo: '/membros/pedro_oliveira.png',
+    photo: '/membros/pedro_pavesi.jpeg',
     isProfessor: false,
   },
   {
     name: 'Matheus Rodrigues Belmoque',
     course: 'ccomp',
     yearLeft: null,
-    photo: '/membros/matheus_belmoque.png',
+    photo: '/membros/matheus_belmoque.jpeg',
     githubUsername: 'belmoque',
     isProfessor: false,
   },
@@ -186,32 +196,36 @@ export const activeMembers: Member[] = [
     name: 'Enrico Polez Ferreira Pinto',
     course: 'engcomp',
     yearLeft: null,
-    photo: '/membros/enrico_pinto.png',
+    photo: '/membros/enrico_pinto.jpeg',
     githubUsername: 'fattoads',
+    linkedinUsername: 'enrico-polez-ferreira-pinto-653043419',
     isProfessor: false,
   },
   {
     name: 'Dimitry Deveza',
     course: 'ccomp',
     yearLeft: null,
-    photo: '/membros/dimitry_deveza.png',
+    photo: '/membros/dimitry_deveza.jpeg',
     githubUsername: 'shoui000',
+    linkedinUsername: 'dimitrydeveza',
     isProfessor: false,
   },
   {
     name: 'Guilherme Mesquita Olmo',
     course: 'ccomp',
     yearLeft: null,
-    photo: '/membros/guilherme_olmo.png',
+    photo: '/membros/guilherme_olmo.jpeg',
     githubUsername: 'gmolmo',
+    linkedinUsername: 'guilherme-mesquita-olmo',
     isProfessor: false,
   },
   {
     name: 'Ricardo Augusto Bona Barbosa',
     course: 'eletrica',
     yearLeft: null,
-    photo: '/membros/ricardo_barbosa.png',
+    photo: '/membros/ricardo_barbosa.jpeg',
     githubUsername: 'Apol0-r',
+    linkedinUsername: 'ricardo-augusto-bona-barbosa-a17086402',
     isProfessor: false,
   },
 ];
@@ -223,6 +237,7 @@ export const alumniMembers: Member[] = [
     name: 'Diana Mello Rosi',
     course: 'engcomp',
     yearLeft: 2025,
+    photo: '/membros/diana_rosi.jpeg',
     githubUsername: 'dianamross',
     isProfessor: false,
   },
@@ -230,12 +245,16 @@ export const alumniMembers: Member[] = [
     name: 'Diogo Delazare Brandao',
     course: 'engcomp',
     yearLeft: 2025,
+    photo: '/membros/diogo_brandao.jpeg',
+    githubUsername: 'JoemanJ',
+    linkedinUsername: 'diogo-delazare-brandão-295a47201',
     isProfessor: false,
   },
   {
     name: 'Gabriel Pietroluongo',
     course: 'engcomp',
     yearLeft: 2025,
+    photo: '/membros/gabriel_pietroluongo.jpg',
     githubUsername: 'pietroluongo',
     isProfessor: false,
   },
@@ -243,6 +262,7 @@ export const alumniMembers: Member[] = [
     name: 'Elisa Müller',
     course: 'engcomp',
     yearLeft: 2025,
+    photo: '/membros/elisa_muller.jpg',
     githubUsername: 'elisamsarmento',
     isProfessor: false,
   },

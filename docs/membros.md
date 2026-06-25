@@ -13,7 +13,9 @@ Cada pessoa é um objeto com o formato do tipo `Member`:
 {
   name: 'Artur Oliveira Cunha',
   course: 'ccomp',
-  photo: '/membros/artur_cunha.png',
+  photo: '/membros/artur_cunha.jpeg',
+  githubUsername: 'arturocunha',     // opcional — botão do GitHub
+  linkedinUsername: 'artur-cunha',   // opcional — botão do LinkedIn
   yearLeft: null,
   isProfessor: false,
 }
@@ -27,11 +29,13 @@ Cada pessoa é um objeto com o formato do tipo `Member`:
 | `isProfessor`    | ✅          | `true` para professores responsáveis; `false` para membros.        |
 | `yearLeft`       | ✅          | `null` para quem está ativo; o ano de saída (número) para egressos. |
 | `course`         | opcional    | Código do curso (tabela abaixo). Professores podem ficar sem.      |
-| `photo`          | opcional    | Caminho da foto, ex.: `/membros/artur_cunha.png` (veja "Fotos").   |
-| `yearJoined`     | opcional    | Ano de entrada. Quando presente, o card mostra "Desde &lt;ano&gt;". |
-| `githubUsername` | opcional    | Usuário do GitHub. Quando presente, ativa o botão de link no card. |
+| `photo`            | opcional  | Caminho da foto, ex.: `/membros/artur_cunha.jpeg` (veja "Fotos").  |
+| `yearJoined`       | opcional  | Ano de entrada. Quando presente, o card mostra "Desde &lt;ano&gt;". |
+| `githubUsername`   | opcional  | Usuário do GitHub. Quando presente, ativa o botão do GitHub no card. |
+| `linkedinUsername` | opcional  | Identificador do LinkedIn — o trecho depois de `/in/` na URL do perfil (ex.: `linkedin.com/in/fulano-silva` → `'fulano-silva'`). Quando presente, ativa o botão do LinkedIn no card. |
 
-> Sem `photo`, o card mostra as iniciais. Sem `course`/`yearJoined`/`githubUsername`,
+> Sem `photo`, o card usa o avatar do GitHub (se houver `githubUsername`) e, na
+> falta dele, um ícone de pessoa. Sem `course`/`githubUsername`/`linkedinUsername`,
 > os respectivos elementos simplesmente não aparecem. Nada quebra.
 
 ### Cursos válidos (`course`)
@@ -54,15 +58,17 @@ Cada pessoa é um objeto com o formato do tipo `Member`:
 
 ## Fotos dos membros
 
-As fotos ficam em **`public/membros/`**. Padrão obrigatório:
+As fotos ficam em **`public/membros/`**. Padrão:
 
-- Formato **PNG**.
-- Nome **`nome_sobrenome.png`** — primeiro nome + último sobrenome, minúsculo,
-  sem acentos, sem espaços (use `_`). Ex.: "Bruno Légora" → `bruno_legora.png`.
-- Imagem de preferência quadrada (ex.: 400×400) — é recortada em círculo.
+- Formato **PNG**, **JPG** ou **JPEG**.
+- Nome **`nome_sobrenome.ext`** — primeiro nome + último sobrenome, minúsculo,
+  sem acentos, sem espaços (use `_`). Ex.: "Bruno Légora" → `bruno_legora.jpg`.
+- De preferência **quadrada** (ex.: 400×400) — é exibida quadrada no card;
+  imagens não quadradas são recortadas pelo centro (o rosto pode ficar cortado,
+  então prefira já recortar quadrado).
 
-No objeto do membro, aponte o campo `photo` para esse arquivo:
-`photo: '/membros/bruno_legora.png'`. A lista de nomes esperados está em
+No objeto do membro, aponte o campo `photo` para esse arquivo, **com a extensão
+certa**: `photo: '/membros/bruno_legora.jpg'`. A lista de nomes esperados está em
 [`public/membros/README.md`](../public/membros/README.md).
 
 ---
@@ -77,13 +83,15 @@ No objeto do membro, aponte o campo `photo` para esse arquivo:
    {
      name: 'Ana Beatriz Souza',
      course: 'eletrica',
-     photo: '/membros/ana_souza.png',
+     photo: '/membros/ana_souza.jpg',
+     githubUsername: 'anabsouza',     // opcional
+     linkedinUsername: 'ana-b-souza', // opcional
      yearLeft: null,
      isProfessor: false,
    },
    ```
 
-3. Coloque a foto `ana_souza.png` em `public/membros/`.
+3. Coloque a foto `ana_souza.jpg` em `public/membros/`.
 4. Garanta que o item anterior termina com vírgula. Salve e confira em
    <http://localhost:3000/membros>.
 
@@ -113,8 +121,9 @@ arquivo em `public/membros/` (mantendo o nome) ou atualize o `photo`.
 },
 ```
 
-Egressos aparecem em lista (sem foto), agrupados pelo `yearLeft` do mais recente
-ao mais antigo.
+Egressos aparecem em **lista** (não em card), mas com os mesmos elementos dos
+membros ativos: **foto** e botões de **GitHub/LinkedIn**. São agrupados pelo
+`yearLeft`, do mais recente ao mais antigo.
 
 > Os egressos atuais (`Fulano da Silva`, etc.) são **placeholders** de 2025 — é
 > só substituir pelos dados reais quando você os tiver.
@@ -134,8 +143,9 @@ pessoa nunca deveria ter sido listada.
 - **Curso inválido:** `course` precisa ser um dos códigos da tabela.
 - **Vírgula faltando** entre os objetos do array.
 - **Aspas trocadas:** use aspas simples `'...'`.
-- **Foto não aparece:** confira o nome do arquivo em `public/membros/` e o campo
-  `photo`. Sem foto válida, aparecem as iniciais (comportamento esperado).
+- **Foto não aparece:** confira o nome do arquivo em `public/membros/` (incluindo
+  a **extensão**) e o campo `photo`. Sem foto válida, o card usa o avatar do
+  GitHub ou um ícone de pessoa (comportamento esperado).
 
 Rode `npx tsc --noEmit` antes do PR — ele aponta esses erros. Depois siga o
 fluxo de commit/PR do [README](./README.md).
