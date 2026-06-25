@@ -10,10 +10,11 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
+import { emailField } from "@/lib/validators"
 
 const contactSchema = z.object({
   nome: z.string().min(2, "Nome deve ter pelo menos 2 caracteres"),
-  email: z.string().email("Email invalido"),
+  email: emailField(),
   assunto: z.string().min(3, "Assunto deve ter pelo menos 3 caracteres"),
   mensagem: z
     .string()

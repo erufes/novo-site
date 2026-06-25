@@ -10,11 +10,12 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
+import { emailField, phoneField } from "@/lib/validators"
 
 const schema = z.object({
   name: z.string().min(2, "Informe seu nome completo"),
-  email: z.string().email("Email inválido"),
-  phone: z.string().optional(),
+  email: emailField(),
+  phone: phoneField({ required: true }),
   course: z.string().min(2, "Informe seu curso"),
   period: z.string().optional(),
   interests: z.string().optional(),
@@ -101,11 +102,17 @@ export function MembershipForm() {
         </div>
 
         <div className="space-y-2 sm:col-span-2">
-          <Label htmlFor="phone">
-            Telefone / WhatsApp{" "}
-            <span className="font-normal text-muted-foreground">(opcional)</span>
-          </Label>
-          <Input id="phone" placeholder="(27) 99999-9999" {...register("phone")} />
+          <Label htmlFor="phone">Celular / WhatsApp</Label>
+          <Input
+            id="phone"
+            type="tel"
+            inputMode="tel"
+            placeholder="(27) 99999-9999"
+            {...register("phone")}
+          />
+          {errors.phone && (
+            <p className="text-sm text-destructive">{errors.phone.message}</p>
+          )}
         </div>
 
         <div className="space-y-2 sm:col-span-2">

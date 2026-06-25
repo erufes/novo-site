@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
+import { emailField, phoneField } from "@/lib/validators"
 
 const partnershipTypes = [
   "Patrocínio / apoio financeiro",
@@ -23,8 +24,8 @@ const partnershipTypes = [
 const schema = z.object({
   organization: z.string().min(2, "Informe o nome da organização"),
   contactName: z.string().min(2, "Informe o nome do responsável"),
-  email: z.string().email("Email inválido"),
-  phone: z.string().optional(),
+  email: emailField(),
+  phone: phoneField({ required: true }),
   website: z.string().optional(),
   partnershipType: z.string().min(1, "Selecione o tipo de parceria"),
   message: z.string().min(10, "Descreva a proposta (mínimo 10 caracteres)"),
@@ -108,11 +109,17 @@ export function PartnerForm() {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="phone">
-            Telefone{" "}
-            <span className="font-normal text-muted-foreground">(opcional)</span>
-          </Label>
-          <Input id="phone" placeholder="(27) 99999-9999" {...register("phone")} />
+          <Label htmlFor="phone">Celular</Label>
+          <Input
+            id="phone"
+            type="tel"
+            inputMode="tel"
+            placeholder="(27) 99999-9999"
+            {...register("phone")}
+          />
+          {errors.phone && (
+            <p className="text-sm text-destructive">{errors.phone.message}</p>
+          )}
         </div>
 
         <div className="space-y-2 sm:col-span-2">
