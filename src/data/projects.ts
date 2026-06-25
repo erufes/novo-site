@@ -127,4 +127,21 @@ export const projects: Project[] = [
     type: 'pesquisa',
     photo: '/projetos/pdr.png',
   },
+  {
+    name: 'Cuberus',
+    slug: 'cuberus',
+    description:
+      'Robô de LEGO que monta o cubo mágico sozinho, identificando as cores por visão computacional.',
+    longDescription:
+      'O Cuberus é um robô construído com LEGO Mindstorms EV3 capaz de resolver o cubo mágico de forma autônoma. Uma câmera captura as faces do cubo e algoritmos de visão computacional identificam a cor de cada peça; a partir desse estado, o robô calcula a sequência de movimentos que soluciona o cubo e a executa por meio de seus motores. O projeto une visão computacional, o algoritmo de resolução do cubo e o controle dos atuadores LEGO. Foi desenvolvido como projeto interno de pesquisa e demonstração — não chegou a ser utilizado em competição.',
+    emoji: '🧩',
+    tags: [
+      'visão computacional',
+      'LEGO Mindstorms EV3',
+      'cubo mágico',
+      'automação',
+    ],
+    type: 'pesquisa',
+    photo: '/projetos/cuberus.png',
+  },
 ];

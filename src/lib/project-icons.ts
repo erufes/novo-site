@@ -1,5 +1,6 @@
 import {
   Bot,
+  Box,
   Car,
   FlaskConical,
   Gauge,
@@ -19,6 +20,7 @@ export const projectIcons: Record<string, LucideIcon> = {
   open: Lightbulb,
   duckietown: Car,
   pdr: FlaskConical,
+  cuberus: Box,
 }
 
 export const defaultProjectIcon: LucideIcon = Bot
