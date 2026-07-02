@@ -8,6 +8,7 @@ import Autoplay from "embla-carousel-autoplay"
 import { motion, useReducedMotion } from "framer-motion"
 import { ArrowRight, Trophy, Users } from "lucide-react"
 import { CountUp } from "@/components/ui/count-up"
+import { achievements } from "@/data/achievements"
 
 const ease = [0.22, 1, 0.36, 1] as const
 
@@ -129,7 +130,7 @@ const slides: Slide[] = [
 
 const stats = [
   { value: 14, pad: 0, suffix: " anos", label: "de história" },
-  { value: 15, pad: 0, suffix: "+", label: "pódios conquistados" },
+  { value: achievements.length, pad: 0, suffix: "", label: "pódios conquistados" },
   { value: 7, pad: 2, suffix: "", label: "projetos ativos" },
   { value: 8, pad: 2, suffix: "", label: "torneios organizados" },
 ]

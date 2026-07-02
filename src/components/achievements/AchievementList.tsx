@@ -24,7 +24,7 @@ export function AchievementList({
               const idx = globalIndex++;
               return (
                 <AchievementCard
-                  key={`${achievement.title}-${achievement.year}`}
+                  key={`${achievement.competition}-${achievement.category}-${achievement.year}-${achievement.position}`}
                   title={achievement.title}
                   description={achievement.description}
                   competition={achievement.competition}

@@ -23,6 +23,8 @@ export default function AchievementsBand() {
     .sort((a, b) => b.year - a.year)
     .slice(0, 4)
 
+  const firstYear = Math.min(...achievements.map((a) => a.year))
+
   return (
     <section className="relative overflow-hidden bg-erus-deep">
       <div aria-hidden className="bg-blueprint absolute inset-0" />
@@ -49,19 +51,19 @@ export default function AchievementsBand() {
 
             <div className="mt-8 flex items-end gap-4">
               <p className="font-display text-7xl font-bold leading-none text-white sm:text-8xl">
-                15<span className="text-es-blue">+</span>
+                {achievements.length}
               </p>
               <div className="mb-2">
                 <Trophy className="mb-1 size-5 text-es-blue" strokeWidth={1.5} />
                 <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/50">
-                  pódios desde 2014
+                  pódios desde {firstYear}
                 </p>
               </div>
             </div>
 
             <p className="mt-6 max-w-md text-sm leading-relaxed text-white/60">
-              Títulos estaduais, nacionais e latino-americanos em seguidor de
-              linha, futebol de robôs, sumô e veículos autônomos.
+              Títulos nacionais e latino-americanos nas categorias IEEE SEK,
+              IEEE OPEN e Very Small Size Soccer da CBR e da LARC.
             </p>
 
             <Link
@@ -77,7 +79,7 @@ export default function AchievementsBand() {
           <div className="flex flex-col justify-center">
             {recent.map((achievement, i) => (
               <motion.div
-                key={`${achievement.year}-${achievement.title}`}
+                key={`${achievement.competition}-${achievement.category}-${achievement.year}-${achievement.position}`}
                 initial={{ opacity: 0, x: 24 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-60px" }}

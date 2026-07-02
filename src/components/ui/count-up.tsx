@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import { MotionGlobalConfig, useInView, useReducedMotion } from "framer-motion"
+import { MotionGlobalConfig, useReducedMotion } from "framer-motion"
 
 type CountUpProps = {
   value: number
@@ -18,8 +18,42 @@ export function CountUp({
   className,
 }: CountUpProps) {
   const ref = useRef<HTMLSpanElement>(null)
-  const inView = useInView(ref, { once: true, margin: "-40px" })
   const reduceMotion = useReducedMotion()
+  const [inView, setInView] = useState(false)
+
+  // Fire once when the element is (or becomes) visible. We check the
+  // current position synchronously on mount so an element already in the
+  // viewport starts counting right away — a scroll-only trigger leaves the
+  // number stuck at 0 when the stats sit at/above the fold on load — and
+  // fall back to an IntersectionObserver for the scroll-into-view case.
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+
+    const isVisible = () => {
+      const rect = el.getBoundingClientRect()
+      const vh = window.innerHeight || document.documentElement.clientHeight
+      return rect.top < vh - 40 && rect.bottom > 0
+    }
+
+    if (isVisible()) {
+      setInView(true)
+      return
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setInView(true)
+          observer.disconnect()
+        }
+      },
+      { rootMargin: "0px 0px -40px 0px" },
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+
   const [display, setDisplay] = useState(0)
 
   useEffect(() => {
